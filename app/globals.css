@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+
+  --polar-blue: #0284c7;
+  --polar-blue-dark: #0369a1;
+
+  --polar-navy: #0f172a;
+  --polar-slate: #475569;
+  --polar-light: #f8fafc;
+  --polar-border: #e2e8f0;
+
+  --card-background: #ffffff;
+  --muted-background: #f1f5f9;
+  --muted-foreground: #64748b;
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+html.dark {
+  --background: #0a0f1a;
+  --foreground: #f8fafc;
+
+  --polar-navy: #f8fafc;
+  --polar-slate: #cbd5e1;
+  --polar-light: #0a0f1a;
+  --polar-border: #334155;
+
+  --card-background: #111827;
+  --muted-background: #1e293b;
+  --muted-foreground: #94a3b8;
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+
+  background: var(--background);
+  color: var(--foreground);
+
+  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+/* =========================================================
+   GLOBAL RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  h1 {
+    line-height: 1.15;
+  }
+
+  h2 {
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.6;
+  }
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  transition-duration: 200ms;
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--polar-blue);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: #bae6fd;
+  color: #0c4a6e;
+}
+
+html.dark ::selection {
+  background: #075985;
+  color: #e0f2fe;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* =========================================================
+   PAGE CONTAINER
+   ========================================================= */
+
+.page-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (max-width: 640px) {
+  .page-container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+@keyframes polar-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.polar-fade-up {
+  animation: polar-fade-up 0.5s ease-out both;
+}
+
+/* =========================================================
+   COMMON POLAR CARD
+   ========================================================= */
+
+.polar-card {
+  border: 1px solid var(--polar-border);
+  background: var(--card-background);
+  color: var(--foreground);
+
+  border-radius: 16px;
+
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease,
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+.polar-card:hover {
+  transform: translateY(-2px);
+  border-color: #bae6fd;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+html.dark .polar-card {
+  background: #111827;
+  border-color: #334155;
+  color: #f8fafc;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .polar-card:hover {
+  border-color: #0369a1;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================================
+   COMMON DARK MODE HELPERS
+   ========================================================= */
+
+.dark-surface {
+  background: var(--card-background);
+  color: var(--foreground);
+}
+
+.dark-muted {
+  background: var(--muted-background);
+  color: var(--muted-foreground);
+}
